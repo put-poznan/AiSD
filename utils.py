@@ -58,7 +58,7 @@ def measure_exe_time(algo, collection):
 	algo(collection)
 	stop = clock()
 	if not is_sorted(collection):
-		raise
+		raise CollectionNotSortedException
 	return stop - start
 
 
