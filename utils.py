@@ -43,6 +43,23 @@ def is_sorted(collection):
 	return True
 
 
+def is_sorted_desc(collection):
+	"""Checks if given collection is sorted (ascending)
+
+	:param collection: Collection to check
+	:return: True if is sorted
+	"""
+	if len(collection) <= 1:
+		return True
+
+	prev = collection[0]
+	for i in range(1, len(collection)):
+		if prev < collection[i]:
+			return False
+		prev = collection[i]
+	return True
+
+
 class CollectionNotSortedException(Exception):
 	pass
 
@@ -57,7 +74,7 @@ def measure_exe_time(algo, collection):
 	start = clock()
 	algo(collection)
 	stop = clock()
-	if not is_sorted(collection):
+	if not is_sorted_desc(collection):
 		raise CollectionNotSortedException
 	return stop - start
 
