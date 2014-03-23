@@ -1,5 +1,5 @@
 
-def ShellSort(a):
+def shell_sort(a):
 
 	N = len(a)
 	j = 0

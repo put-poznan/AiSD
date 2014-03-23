@@ -1,6 +1,6 @@
 from utils import *
 
-def HeapSort(A):
+def heap_sort(A):
     def heapify(A):
         start = (len(A) - 2) / 2
         while start >= 0:
