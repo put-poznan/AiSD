@@ -3,8 +3,8 @@ __author__ = 'Mateusz Bednarski'
 import matplotlib.pyplot as plt
 import numpy as np
 
-if __name__ == '__main__':
-	raw = np.loadtxt('iqsort_rnd.txt')
+def analyse(f):
+	raw = np.loadtxt(f)
 
 	x = raw[0, :]
 
@@ -16,16 +16,16 @@ if __name__ == '__main__':
 
 	errors = [minima, maxima]
 
+	return x, mean, errors
+
+if __name__ == '__main__':
+	f = raw_input('File to analyse: ')
+
+	x, mean, errors = analyse(f)
+
+
 	plt.errorbar(x, mean, errors)
-
-	mean2 = 2 * mean
-	minima2 = 2 * minima
-	maxima2 = 0.5 * maxima
-
-	errors2 = [minima2, maxima2]
-
-	plt.errorbar(x, mean2, errors2, fmt='--s', ecolor='r', barsabove=True, elinewidth=5, capsize=10	)
-
+	plt.savefig(f + '.png')
 	plt.show()
 
 

@@ -11,12 +11,29 @@ from generators import *
 import numpy as np
 
 probe_sizes = [10, 100, 500, 1000, 2500, 5000, 10000, 20000, 35000, 50000]
+#probe_sizes = [10, 100, 500, 1000, 2500, 5000]
+
+repeats = 5
+
 
 if __name__ == '__main__':
-	dd = np.array([
-		[10, 100, 500, 1000],
-		[1, 10, 100, 1000],
-		[2, 20, 200, 2000],
-		[3, 30, 300, 3000],
-		[4, 40, 400, 4000]])
+	dd = np.zeros((1 + repeats, len(probe_sizes)))
+	dd[0, :] = probe_sizes
+
+	#to fill
+	algo = QuickSortIterative
+	gen = generate_ascending_sequence
+
+	probeIndex = 0
+	for probe in probe_sizes:
+		print 'Probe size ', probe, '(Index ', probeIndex, ')...'
+		for row in range(1, repeats + 1):
+			print 'Repeat ', row, '...'
+			data = gen(probe)
+			perf = measure_exe_time(algo, data)
+			dd[row, probeIndex] = perf
+		probeIndex += 1
+
+
+	#to fill
 	np.savetxt('iqsort_rnd.txt', dd, header='IQsort random')
