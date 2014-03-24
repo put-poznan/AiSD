@@ -24,7 +24,8 @@ def shell_sort(a):
 
 
 
+if __name__ == '__main__':
 
-dd = [4, 3, 6, 5, 4, -10, 15, -45, 3, 8]
-ShellSort(dd)
-print dd
+	dd = [4, 3, 6, 5, 4, -10, 15, -45, 3, 8]
+	ShellSort(dd)
+	print dd

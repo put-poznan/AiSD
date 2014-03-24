@@ -33,8 +33,9 @@ def part(a, lo, hi):
 		a[i], a[j] = a[j], a[i]
 	a[lo], a[j] = a[j], a[lo]
 	return j
+if __name__ == '__main__':
 
-dd = generate_random_sequence(100000,0,1000)
-print  measure_exe_time(QuickSort, dd)
-print is_sorted_desc(dd)
-print dd
+	dd = generate_random_sequence(100000,0,1000)
+	print  measure_exe_time(QuickSort, dd)
+	print is_sorted_desc(dd)
+	print dd

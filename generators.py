@@ -26,7 +26,8 @@ def generate_v_sequence(size, min_val=0, max_val=100):
 	b = generate_ascending_sequence(size - size / 2, min_val, max_val)
 	return a + b
 
-print generate_descending_sequence(10)
-print generate_ascending_sequence(10)
-print generate_random_sequence(10)
-print generate_v_sequence(10)
+if __name__ == '__main__':
+	print generate_descending_sequence(10)
+	print generate_ascending_sequence(10)
+	print generate_random_sequence(10)
+	print generate_v_sequence(10)

@@ -2,7 +2,7 @@ __author__ = 'Mateusz Bednarski'
 
 from utils import *
 
-def QuickSort(A):
+def QuickSortIterative(A):
 	iqsort(A,0, len(A) - 1)
 
 
@@ -46,8 +46,9 @@ def iqsort(a, l, h):
 			stack.append(p+1)
 			stack.append(h)
 
+if __name__ == '__main__':
 
-dd = generate_random_sequence(100000, 0, 1000)
-print measure_exe_time(QuickSort, dd)
-print is_sorted_desc(dd)
-print dd
+	dd = generate_random_sequence(100000, 0, 1000)
+	print measure_exe_time(QuickSort, dd)
+	print is_sorted_desc(dd)
+	print dd
