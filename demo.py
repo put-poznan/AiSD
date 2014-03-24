@@ -6,7 +6,7 @@ from qsort import QuickSort
 from qsort_iter import QuickSortIterative
 from heap_sort import heap_sort
 from shell import shell_sort
-from utils import measure_exe_time
+from utils import measure_exe_time, is_sorted_desc
 from generators import *
 
 
@@ -41,7 +41,7 @@ if __name__ == '__main__':
 				  generate_v_sequence,
 				  generate_random_sequence]
 
-	seq = generators[generator](size, 0, 1000)
+	seq = generators[generator](size)
 
 	if size < 11:
 		print "Sekwencja wejsciowa: ", seq
@@ -52,6 +52,7 @@ if __name__ == '__main__':
 		print "Sekwencja wyjsciowa: ", seq
 
 	print "Czas wykonania: ", perf
+	print is_sorted_desc(seq)
 
 	raw_input()
 
