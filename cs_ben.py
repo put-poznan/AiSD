@@ -12,20 +12,38 @@ from sys import setrecursionlimit
 
 import numpy as np
 
-probe_sizes = [10, 1000, 5000, 10000, 20000, 35000, 50000, 70000, 85000, 100000,200000,500000,1000000]
+probe_sizes = [10, 1000, 10000,50000,100000,500000,750000,1000000,5000000,10000000]
+b_param = [10000,100000,1000000,2500000,5000000,7500000,10000000,15000000,20000000]
 #probe_sizes = [10,100, 1000, 10000,20000]
 
 repeats = 5
 
 
 def single_algo(gen):
-	dd = np.zeros((1 + repeats, len(probe_sizes)))
-	dd[0, :] = probe_sizes
+	dd = np.zeros((len(b_param), len(probe_sizes)))
+	#dd[0, :] = probe_sizes
+	#dd[:, 0] = b_param
 
 	#to fill
-	algo = shell_sort
+	algo = counting_sort
 
-	probeIndex = 0
+	nc = 0
+	bc = 0
+
+	for n in probe_sizes:
+		bc = 0
+		for b in b_param:
+			print 'n=', n, ' b=', b
+			r = []
+			for xd in range(repeats):
+				data = generate_random_sequence(n, max_val=b)
+				perf = measure_exe_time(algo,data)
+				r.append(perf)
+			dd[bc, nc] = np.mean(r)
+			bc += 1
+		nc += 1
+
+	'''probeIndex = 0
 	too_deep = False
 	for probe in probe_sizes:
 		if too_deep:
@@ -42,7 +60,7 @@ def single_algo(gen):
 				dd[row, probeIndex] = 0
 				too_deep = True
 
-		probeIndex += 1
+		probeIndex += 1'''
 
 	return dd
 
@@ -50,18 +68,15 @@ if __name__ == '__main__':
 	setrecursionlimit(10000)
 	print 'random'
 	random = single_algo(generate_random_sequence)
-	print 'asc'
+	'''print 'asc'
 	asc = single_algo(generate_ascending_sequence)
 	print 'desc'
 	desc = single_algo(generate_descending_sequence)
 	print 'v'
 	v = single_algo(generate_v_sequence)
-
+'''
 	#print  measure_exe_time(QuickSortIterative, generate_ascending_sequence(20000))
 
 	#to fill
-	hdr = 'ssort'
-	np.savetxt('ssort_rnd2', random, header=hdr)
-	np.savetxt('ssort_asc2', asc,    header=hdr)
-	np.savetxt('ssort_desc2', desc,  header=hdr)
-	np.savetxt('ssort_v2', v, 		 header=hdr)
+	hdr = 'csort'
+	np.savetxt('csort', random, fmt='%f', header=hdr)

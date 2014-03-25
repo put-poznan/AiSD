@@ -12,28 +12,29 @@ from sys import setrecursionlimit
 
 import numpy as np
 
-probe_sizes = [10, 1000, 5000, 10000, 20000, 35000, 50000, 70000, 85000, 100000,200000,500000,1000000]
+b_params = [10, 1000, 5000, 10000, 20000, 35000, 50000, 70000, 85000, 100000,200000,500000,1000000]
+
 #probe_sizes = [10,100, 1000, 10000,20000]
 
 repeats = 5
 
 
 def single_algo(gen):
-	dd = np.zeros((1 + repeats, len(probe_sizes)))
-	dd[0, :] = probe_sizes
+	dd = np.zeros((1 + repeats, len(b_params)))
+	dd[0, :] = b_params
 
 	#to fill
 	algo = shell_sort
 
 	probeIndex = 0
 	too_deep = False
-	for probe in probe_sizes:
+	for probe in b_params:
 		if too_deep:
 			break
 		print 'Probe size ', probe, '(Index ', probeIndex, ')...'
 		for row in range(1, repeats + 1):
 			print 'Repeat ', row, '...'
-			data = gen(probe)
+			data = gen(100000, max_val=probe)
 			try:
 				perf = measure_exe_time(algo, data)
 				dd[row, probeIndex] = perf
@@ -60,8 +61,8 @@ if __name__ == '__main__':
 	#print  measure_exe_time(QuickSortIterative, generate_ascending_sequence(20000))
 
 	#to fill
-	hdr = 'ssort'
-	np.savetxt('ssort_rnd2', random, header=hdr)
-	np.savetxt('ssort_asc2', asc,    header=hdr)
-	np.savetxt('ssort_desc2', desc,  header=hdr)
-	np.savetxt('ssort_v2', v, 		 header=hdr)
+	hdr = 'csort2'
+	np.savetxt('csort_rnd2', random, header=hdr)
+	np.savetxt('csort_asc2', asc,    header=hdr)
+	np.savetxt('csort_desc2', desc,  header=hdr)
+	np.savetxt('csort_v2', v, 		 header=hdr)

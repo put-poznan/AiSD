@@ -1,26 +1,17 @@
+#na pdostawie sedgewicka
 
 def shell_sort(a):
-
-	N = len(a)
-	j = 0
-	p = 0
-	gap = 1
-	tmp = 0
-	k = 1
-
-	gap = 1
-	while 0 < gap < N:
-		for p in range(gap, N):
-			tmp = a[p]
-			j = p
-			while j >= gap and tmp > a[j - gap]:
-				a[j] = a[j - gap]
-
-				j -= gap
-
-			a[j] = tmp
-		k += 1
-		gap = ((3 ** k) - 1) / 2
+	n = len(a)
+	h = 1
+	while h < n/3:
+		h = 3 * h + 1
+	while h >= 1:
+		for i in range(h, n):
+			j = i
+			while j >= h and a[j] > a[j-h]:
+				a[j], a[j-h] = a[j-h], a[j]
+				j -= h
+		h = h/3
 
 
 

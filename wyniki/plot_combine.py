@@ -19,11 +19,16 @@ def analyse(f):
 	return x, mean, errors
 
 if __name__ == '__main__':
+
+	#0-hs
+	#1-qs
+	#2-iqs
+	#3-ss
 	#f = raw_input('File to analyse: ')
-	x, mean, errors = analyse   ('csort_rnd2')
-	x1, mean1, errors1 = analyse('csort_asc2')
-	x2, mean2, errors2 = analyse('csort_desc2')
-	x3, mean3, errors3 = analyse('csort_v2')
+	x, mean, errors = analyse   ('hsort_v')
+	x1, mean1, errors1 = analyse('qsort_v')
+	x2, mean2, errors2 = analyse('iqsort_v')
+	x3, mean3, errors3 = analyse('ssort_v')
 
 
 	p, h ,d= plt.errorbar(x, mean, errors,    fmt='r-')
@@ -31,13 +36,13 @@ if __name__ == '__main__':
 	p2, h,d = plt.errorbar(x2, mean2, errors2, fmt='b-')
 	p3, h, d= plt.errorbar(x3, mean3, errors3, fmt='orange')
 
-	plt.legend([p,p1,p2,p3], ['random', 'ascending', 'descending', 'v-shaped'], loc=10)
+	plt.legend([p,p1,p2,p3], ['Heap sort', 'Quicksort (recursive)', 'Quicksort (iterative)', 'Shell sort'], loc=2)
 	#plt.axis('equal')
 	plt.ylabel('Execution time [s]')
-	plt.xlabel('Maximum value. n = const = 100000')
-	plt.title('Counting sort')
+	plt.xlabel('Input size (n)')
+	plt.title('V-shaped input')
 
-	plt.savefig('cs_const_n' + '.png')
+	plt.savefig('v' + '.png')
 	plt.show()
 
 
