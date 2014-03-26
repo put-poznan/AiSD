@@ -76,8 +76,12 @@ def bench():
 		ite[row, :] = [imean, imax, imin]
 		row += 1
 
-	plt.plot(probes, ite[:, 0])
-	plt.plot(probes, rec[:, 0])
+	p1, = plt.plot(probes, ite[:, 0])
+	p2, = plt.plot(probes, rec[:, 0])
+	plt.legend([p1, p2], ['Iterative', 'Recursive'], loc=2)
+	plt.xlabel('Number of bits in code')
+	plt.ylabel('Execution time [s]')
+	plt.savefig('gray.png')
 	plt.show()
 
 
